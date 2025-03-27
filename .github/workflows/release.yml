@@ -16,8 +16,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Get depends
-        run:  sudo apt-get update && sudo apt-get -y install build-essential debhelper
+      - name: Install dependencies
+        run: ./get-depends.sh
 
       - name: Build
         run: ./buildpackage.sh
