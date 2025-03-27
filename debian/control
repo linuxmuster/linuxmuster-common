@@ -1,0 +1,10 @@
+Source: linuxmuster-common
+Section: linuxmuster
+Priority: optional
+Maintainer: Thomas Schmitt <thomas@linuxmuster.net>
+Build-Depends: debhelper (>= 5.0.0)
+Standards-Version: 5.0.0
+
+Package: linuxmuster-common
+Architecture: all
+Description: linuxmuster.net common files

@@ -1,0 +1,5 @@
+linuxmuster-common (7.3.0-0) lmn73; urgency=low
+
+  * initial package.
+
+ -- Thomas Schmitt <thomas@linuxmuster.net>  Thu, 27 Mar 2025 11:34:42 +0100
