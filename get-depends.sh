@@ -35,5 +35,5 @@ $SUDO apt-get update
 $SUDO apt-get -y install bash bash-completion build-essential curl debhelper dpkg-dev || exit 1
 
 # install build depends
-BUILDDEPENDS="$(curl -s $CONTROL_URL | sed -n '/Build-Depends:/,/Package:/p' | grep -v ^Package | sed -e 's|^Build-Depends: ||' | sed -e 's|,||g')"
+BUILDDEPENDS="$(curl -s $CONTROL_URL | grep -v ^Standards-Version | sed -n '/Build-Depends:/,/Package:/p' | grep -v ^Package | sed -e 's|^Build-Depends: ||' | sed -e 's| (.*)||g' | sed -e 's|,||g')"
 $SUDO apt-get -y install $BUILDDEPENDS || exit 1
