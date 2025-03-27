@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Get depends
-        run:  apt-get update && apt-get -y install debhelper
+        run:  sudo apt-get update && sudo apt-get -y install debhelper
 
       - name: Build
         run: ./buildpackage.sh
