@@ -3,7 +3,7 @@
 # environment.py: linuxmuster environment
 # don't change this
 # thomas@linuxmuster.net
-# 20250327
+# 20250405
 #
 
 # firewall major version to match
@@ -22,7 +22,8 @@ NTPSOCKDIR = '/var/lib/samba/ntp_signd'
 SYSVOLDIR = '/var/lib/samba/sysvol'
 SYSVOLTLSDIR = SYSVOLDIR + '/@@domainname@@/tls'
 SSLDIR = SYSDIR + '/ssl'
-SSLCNF = SSLDIR + '/server_cert_ext.cnf'
+SRVSSLCNF = SSLDIR + '/server_cert_ext.cnf'
+FWSSLCNF = SSLDIR + '/firewall_cert_ext.cnf'
 CAKEY = SSLDIR + '/cakey.pem'
 CACERT = SSLDIR + '/cacert.pem'
 CACERTCRT = SSLDIR + '/cacert.crt'
@@ -36,7 +37,6 @@ ADADMINSECRET = SECRETDIR + '/administrator'
 DNSADMINSECRET = SECRETDIR + '/dns-admin'
 CAKEYSECRET = SECRETDIR + '/cakey'
 FWAPIKEYS = SECRETDIR + '/firewall.api.ini'
-FWFULLCHAIN = SSLDIR + '/firewall.fullchain.pem'
 LIBDIR = '/usr/lib/linuxmuster'
 SHAREDIR = '/usr/share/linuxmuster'
 EXAMPLEDIR = SHAREDIR + '/examples'
