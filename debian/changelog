@@ -1,3 +1,10 @@
+linuxmuster-common (7.3.1-0) lmn73; urgency=low
+
+  * environment update: removed SSLCNF & FWFULLCHAIN,
+    added SRVSSLCNF & FWSSLCNF (#158, d15773c).
+
+ -- Thomas Schmitt <thomas@linuxmuster.net>  Wed, 09 Apr 2025 17:10:46 +0200
+
 linuxmuster-common (7.3.0-0) lmn73; urgency=low
 
   * initial package.
