@@ -53,20 +53,12 @@ jobs:
           export VERSION=$(grep -i ^Version *.changes | awk -F\: '{ print $2 }' | awk '{ print $1 }')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Test if it's a testing prerelease
-        id: check_prerelease
-        uses: haya14busa/action-cond@v1
-        with:
-          cond: ${{ env.DISTRIBUTION == 'lmn74-testing' }}
-          if_true: "true"
-          if_false: "false"
-
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v2
         with:
           name: Release ${{ env.VERSION }} (${{ env.DISTRIBUTION }})
           draft: false
-          prerelease: ${{ steps.check_prerelease.outputs.value }}
+          prerelease: false
           body_path: ./current-changes
           files: linuxmuster-common_*
           token: ${{ secrets.GITHUB_TOKEN }}
