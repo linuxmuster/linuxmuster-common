@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-26.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: ./get-depends.sh
@@ -57,33 +57,19 @@ jobs:
         id: check_prerelease
         uses: haya14busa/action-cond@v1
         with:
-          cond: ${{ env.DISTRIBUTION == 'lmn73-testing' }}
+          cond: ${{ env.DISTRIBUTION == 'lmn74-testing' }}
           if_true: "true"
           if_false: "false"
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release and Upload Assets
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ env.VERSION }} (${{ env.DISTRIBUTION }})
+          name: Release ${{ env.VERSION }} (${{ env.DISTRIBUTION }})
           draft: false
           prerelease: ${{ steps.check_prerelease.outputs.value }}
           body_path: ./current-changes
-
-      - name: Delete current changes file
-        run: rm ./current-changes
-
-      - name: Upload Release Assets
-        id: upload-release-assets
-        uses: dwenegar/upload-release-assets@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_id: ${{ steps.create_release.outputs.id }}
-          assets_path: .
+          files: linuxmuster-common_*
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   publish:
     needs: deb-package
@@ -99,7 +85,7 @@ jobs:
           ssh-add - <<< "${{ secrets.REPO_SSH_KEY }}"
 
       - name: Clone archive repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: "linuxmuster/deb"
           ssh-key: ${{ secrets.REPO_SSH_KEY }}
