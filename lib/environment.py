@@ -3,11 +3,11 @@
 # environment.py: linuxmuster environment
 # don't change this
 # thomas@linuxmuster.net
-# 20250405
+# 20260328
 #
 
 # firewall major version to match
-FWMAJORVER = 25
+FWMAJORVER = 26
 
 # global variables
 ROOTMNTOPTS = 'user_xattr,acl,usrquota,usrjquota=aquota.user,grpquota,grpjquota=aquota.group,jqfmt=vfsv0,errors=remount-ro,barrier=1'
@@ -54,7 +54,6 @@ FWAUTHCFG = FWSHAREDIR + '/pre-auth.conf'
 FWOSCONFTPL = FWSHAREDIR + '/config.xml.tpl'
 FWCONFLOCAL = CACHEDIR + '/opnsense.xml'
 FWCONFREMOTE = '/conf/config.xml'
-GW_LAN = 'GW_LAN'
 SETUPINI = VARDIR + '/setup.ini'
 DEFAULTSINI = SHAREDIR + '/setupdefaults.ini'
 PREPINI = VARDIR + '/prepare.ini'
