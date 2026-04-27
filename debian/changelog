@@ -1,8 +1,9 @@
-linuxmuster-common (7.4.0-1) lmn74; urgency=low
+linuxmuster-common (7.4.1-0) lmn74; urgency=low
 
   * Rebuild with new lmndev-runner based workflow (f572f82).
+  * Fix ubuntu 26.04 build system compatibility (a9b39c0).
 
- -- Thomas Schmitt <thomas@linuxmuster.net>  Mo, 27 Apr 2026 10:40:19 +0200
+ -- Thomas Schmitt <thomas@linuxmuster.net>  Mon, 27 Apr 2026 12:28:28 +0200
 
 linuxmuster-common (7.4.0-0) lmn74; urgency=low
 
