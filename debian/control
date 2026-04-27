@@ -2,7 +2,7 @@ Source: linuxmuster-common
 Section: linuxmuster
 Priority: optional
 Maintainer: Thomas Schmitt <thomas@linuxmuster.net>
-Build-Depends: debhelper (>= 5.0.0)
+Build-Depends: debhelper-compat (= 13)
 Standards-Version: 5.0.0
 
 Package: linuxmuster-common
