@@ -3,7 +3,7 @@
 # environment.py: linuxmuster environment
 # don't change this
 # thomas@linuxmuster.net
-# 20260328
+# 20260617
 #
 
 # firewall major version to match
@@ -67,6 +67,9 @@ LINBOTPLDIR = LINBOSHAREDIR + '/templates'
 LINBOCACHEDIR = CACHEDIR + '/linbo'
 LINBOSYSDIR = SYSDIR + '/linbo'
 LINBOVARDIR = VARDIR + '/linbo'
+OTRDIR = LINBOIMGDIR + '/opentracker'
+OTRWLIST = OTRDIR + '/torrent.whitelist'
+OTRUSER = '_opentracker'
 DHCPDEVCONF = '/etc/dhcp/devices.conf'
 DHCPSUBCONF = '/etc/dhcp/subnets.conf'
 NETCFG = '/etc/netplan/01-netcfg.yaml'
