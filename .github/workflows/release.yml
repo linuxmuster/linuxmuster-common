@@ -74,6 +74,7 @@ jobs:
           echo "version=$(dpkg-parsechangelog -S Version)" >> "$GITHUB_OUTPUT"
           echo "distribution=$(dpkg-parsechangelog -S Distribution)" >> "$GITHUB_OUTPUT"
       - name: Build package
+        working-directory: ${{ github.workspace }}
         run: /opt/lmndev/build/linuxmuster-common.sh
         env:
           OUTPUT_DIR: ${{ github.workspace }}/output
