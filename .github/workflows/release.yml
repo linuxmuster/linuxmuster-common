@@ -42,31 +42,41 @@ jobs:
             echo "image=ghcr.io/linuxmuster/lmndev-runner:24.04" >> "$GITHUB_OUTPUT"
           fi
 
-  build:
-    needs: resolve
+  prepare:
     runs-on: ubuntu-latest
-    container:
-      image: ${{ needs.resolve.outputs.image }}
-
-    outputs:
-      version: ${{ steps.meta.outputs.version }}
-      distribution: ${{ steps.meta.outputs.distribution }}
-
+    needs: resolve
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Upload source
+        uses: actions/upload-artifact@v4
+        with:
+          name: source
+          path: .
 
+  build:
+    needs: prepare
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ needs.resolve.outputs.image }}
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      distribution: ${{ steps.meta.outputs.distribution }}
+    steps:
+      - name: Download source
+        uses: actions/download-artifact@v4
+        with:
+          name: source
+          path: .
       - name: Read version and distribution from debian/changelog
         id: meta
         run: |
           echo "version=$(dpkg-parsechangelog -S Version)" >> "$GITHUB_OUTPUT"
           echo "distribution=$(dpkg-parsechangelog -S Distribution)" >> "$GITHUB_OUTPUT"
-
       - name: Build package
         run: /opt/lmndev/build/linuxmuster-common.sh
         env:
           OUTPUT_DIR: ${{ github.workspace }}/output
-
       - name: Upload packages as artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -78,14 +88,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Download packages
         uses: actions/download-artifact@v4
         with:
           name: packages
           path: packages/
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -96,21 +104,18 @@ jobs:
   publish:
     needs: [build, release]
     runs-on: ubuntu-latest
-
     steps:
       - name: Download packages
         uses: actions/download-artifact@v4
         with:
           name: packages
           path: packages/
-
       - name: Clone archive repository
         uses: actions/checkout@v4
         with:
           repository: linuxmuster/deb
           ssh-key: ${{ secrets.REPO_SSH_KEY }}
           path: deb
-
       - name: Publish packages (${{ needs.build.outputs.distribution }})
         run: |
           PACKAGE="linuxmuster-common"
