@@ -55,7 +55,7 @@ jobs:
           path: .
 
   build:
-    needs: prepare
+    needs: [resolve, prepare]
     runs-on: ubuntu-latest
     container:
       image: ${{ needs.resolve.outputs.image }}
