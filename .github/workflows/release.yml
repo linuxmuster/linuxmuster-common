@@ -24,8 +24,6 @@ on:
 jobs:
   resolve:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     outputs:
       image: ${{ steps.image.outputs.image }}
     steps:
@@ -42,20 +40,8 @@ jobs:
             echo "image=ghcr.io/linuxmuster/lmndev-runner:24.04" >> "$GITHUB_OUTPUT"
           fi
 
-  prepare:
-    runs-on: ubuntu-latest
-    needs: resolve
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Upload source
-        uses: actions/upload-artifact@v4
-        with:
-          name: source
-          path: .
-
   build:
-    needs: [resolve, prepare]
+    needs: resolve
     runs-on: ubuntu-latest
     container:
       image: ${{ needs.resolve.outputs.image }}
@@ -63,10 +49,9 @@ jobs:
       version: ${{ steps.meta.outputs.version }}
       distribution: ${{ steps.meta.outputs.distribution }}
     steps:
-      - name: Download source
-        uses: actions/download-artifact@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          name: source
           path: build
       - name: Read version and distribution from debian/changelog
         id: meta
