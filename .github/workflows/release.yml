@@ -67,14 +67,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: source
-          path: .
+          path: build
       - name: Read version and distribution from debian/changelog
         id: meta
+        working-directory: build
         run: |
           echo "version=$(dpkg-parsechangelog -S Version)" >> "$GITHUB_OUTPUT"
           echo "distribution=$(dpkg-parsechangelog -S Distribution)" >> "$GITHUB_OUTPUT"
       - name: Build package
-        working-directory: build
         run: /opt/lmndev/build/linuxmuster-common.sh
         env:
           OUTPUT_DIR: ${{ github.workspace }}/output
