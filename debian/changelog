@@ -1,3 +1,9 @@
+linuxmuster-common (7.4.3-0) lmn74; urgency=low
+
+  * helperfunctions.sh: fix python functions import (33148aey).
+
+ -- Thomas Schmitt <thomas@linuxmuster.net>  Fri,  5 Jun 2026 17:40:46 +0200
+
 linuxmuster-common (7.4.2-0) lmn74; urgency=low
 
   * add opentracker environment variables (8cd7c51).
