@@ -118,7 +118,7 @@ get_ip(){
 # get_bcaddress <ip>
 get_bcaddress(){
 python3 <<END
-from functions import getIpBcAddress
+from linuxmuster_base7.functions import getIpBcAddress
 try:
   ip="$1"
   print(getIpBcAddress(ip))
