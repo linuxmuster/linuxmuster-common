@@ -1,3 +1,11 @@
+linuxmuster-common (7.4.4) lmn74; urgency=low
+
+  * helperfunctions.sh: add get_confpath() (5d31eee).
+  * remove deprecated linbo kernel paths from helperfunctions.sh (83d6ed5).
+  * remove package revision no. from version.
+
+ -- Thomas Schmitt <thomas@linuxmuster.net>  Thu, 25 Jun 2026 08:38:26 +0200
+
 linuxmuster-common (7.4.3-0) lmn74; urgency=low
 
   * helperfunctions.sh: fix python functions import (33148aey).
