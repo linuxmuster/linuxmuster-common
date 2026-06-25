@@ -2,7 +2,7 @@
 # helperfunctions for linbo scripts
 #
 # thomas@linuxmuster.net
-# 20231116
+# 20260625
 #
 
 # get linuxmuster environment variables
@@ -164,4 +164,11 @@ do_rsync_hostname(){
   validdomain "$RSYNC_HOST_NAME" || RSYNC_HOST_NAME="${RSYNC_HOST_NAME}.$(hostname -d)"
   export compname
   export RSYNC_HOST_NAME
+}
+
+# return config file path from template header
+get_confpath(){
+  local tpl="$1"
+  [ -e "$tpl" ] || return 1
+  head -1 "$tpl" | awk '{print $2}'
 }
