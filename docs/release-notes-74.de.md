@@ -19,5 +19,9 @@ funktioniert wieder. Nicht mehr verwendete LINBO-Kernelpfade wurden entfernt,
 eine Hilfsfunktion zum Ermitteln des Zielpfads einer Konfigurationsvorlage kam
 hinzu.
 
+## Paketpflege (7.4.5)
+
+Interner Fehler in der Paketerstellung behoben, keine funktionalen Änderungen.
+
 Signed-off by: thomas@linuxmuster.net
 Assisted by  : Claude
