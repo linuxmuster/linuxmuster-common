@@ -1,3 +1,14 @@
+linuxmuster-common (7.4.5) lmn74; urgency=low
+
+  * keep python bytecode caches out of the package: clean lib/__pycache__ in
+    debian/rules and exclude __pycache__/*.pyc from dh_install, which
+    "debian/install" pulled in via "lib/*".
+  * postinst: byte-compile environment.py on "configure" instead of on
+    "abort-upgrade|abort-remove|abort-deconfigure", where it never ran on a
+    normal installation.
+
+ -- Thomas Schmitt <thomas@linuxmuster.net>  Thu, 17 Sep 2026 15:18:51 +0200
+
 linuxmuster-common (7.4.4) lmn74; urgency=low
 
   * helperfunctions.sh: add get_confpath() (5d31eee).

@@ -1,7 +1,10 @@
 #!/bin/bash
 #
-# thomas@linuxmuster.net
-# 20250327
+# Filename     : postinst
+# Description  : Debian post-installation script for linuxmuster-common
+# Signed-off by: thomas@linuxmuster.net
+# Assisted by  : Claude
+# Date         : 20260917
 #
 # see: dh_installdeb(1)
 
@@ -21,11 +24,13 @@ set -e
 
 case "$1" in
 
-  configure) ;;
-
-  abort-upgrade|abort-remove|abort-deconfigure)
+  configure)
+    # byte-compile the shipped environment module on the target system, the
+    # package itself must not contain any __pycache__ directory
     python3 -m compileall /usr/lib/linuxmuster/environment.py
   ;;
+
+  abort-upgrade|abort-remove|abort-deconfigure) ;;
 
   *)
     echo "postinst called with unknown argument \`$1'" >&2

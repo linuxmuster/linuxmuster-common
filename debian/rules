@@ -54,6 +54,10 @@ clean1:
 	dh_testroot
 	rm -f build-indep-stamp build-arch-stamp configure-stamp
 
+	# python bytecode caches must not end up in the package, the .pyc files
+	# are generated on the target system by postinst instead
+	rm -rf lib/__pycache__
+
 	# Add here commands to clean up after the build process.
 	#-$(MAKE) clean
 
@@ -67,8 +71,9 @@ install: build
 	dh_prep
 	dh_installdirs
 
-	# Add here commands to install the package.
-	dh_install
+	# Add here commands to install the package, excluding python bytecode
+	# caches which "debian/install" would otherwise pull in via "lib/*"
+	dh_install -X__pycache__ -X.pyc
 
 # Build architecture-independent files here.
 # Pass -i to all debhelper commands in this target to reduce clutter.
