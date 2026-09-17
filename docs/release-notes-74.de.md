@@ -1,4 +1,4 @@
-# linuxmuster-common 7.4.4
+# linuxmuster-common 7.4.5
 
 Das Paket `linuxmuster-common` stellt die gemeinsamen Umgebungsvariablen und
 Hilfsfunktionen bereit, auf die alle linuxmuster.net-Komponenten zugreifen.
